@@ -1,0 +1,12 @@
+jira_ip_address: 127.0.0.1
+jira_deploy_dir: /opt/jira-deploy
+jira_data_dir: /opt/jira/data
+jira_image_name: jira
+jira_image_tag: ansible
+jira_container_settings:
+  name: jira
+  image: "{{jira_image_name}}"
+  volumes:
+    - "{{ jira_data_dir }}:/var/atlassian/application-data/jira"
+  ports:
+    - '{{ jira_ip_address }}:8080:8080'

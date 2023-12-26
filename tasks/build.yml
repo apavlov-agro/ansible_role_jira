@@ -1,0 +1,17 @@
+- name: copy Dockerfile
+  template:
+     src: "Dockerfile.j2"
+     dest: "{{ jira_deploy_dir }}/jira/Dockerfile"
+
+- name: copy agent file
+  copy:
+    src: ../files/atlassian-agent.jar
+    dest: "{{ jira_deploy_dir }}/jira/atlassian-agent.jar"
+
+- name: "Build image"
+  docker_image:
+    build:
+      path: "{{ jira_deploy_dir }}/jira"
+    name: "{{ jira_image_name }}"
+    tag: "{{ jira_image_tag }}"
+    source: build

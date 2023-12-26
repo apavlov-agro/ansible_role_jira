@@ -1,0 +1,14 @@
+- name: "deploy jira"
+  docker_container:
+    name: "{{ jira_container_settings.name }}"
+    image: "{{ jira_container_settings.image }}"
+    restart_policy: always
+    state: started
+    volumes:
+      "{{ jira_container_settings.volumes }}"
+    ports:
+      "{{ jira_container_settings.ports }}"
+    env:
+      "{{ jira_container_settings.env }}"
+    networks:
+      - name: "{{ jira_container_settings.networks }}"

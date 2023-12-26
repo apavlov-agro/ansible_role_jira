@@ -3,6 +3,7 @@ jira_deploy_dir: /opt/jira-deploy
 jira_data_dir: /opt/jira/data
 jira_image_name: jira
 jira_image_tag: ansible
+jira_volume_data: data
 jira_container_settings:
   name: jira
   image: "{{jira_image_name}}"

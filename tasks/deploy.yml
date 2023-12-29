@@ -19,5 +19,7 @@
       "{{ jira_container_settings.ports }}"
     env:
       "{{ jira_container_settings.env }}"
+    etc_hosts:
+      "{{ jira_container_settings.hosts | default (omit) }}"
     networks:
       - name: "{{ jira_container_settings.networks }}"

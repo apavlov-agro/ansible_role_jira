@@ -1,0 +1,25 @@
+---
+- name: Create a data volume
+  docker_volume:
+    name: "{{ jira_volume_data }}"
+
+- name: add network to docker
+  docker_network:
+    name: "{{ jira_docker_networks }}"
+
+- name: "deploy jira"
+  docker_container:
+    name: "{{ jira_container_settings.name }}"
+    image: "{{ jira_container_settings.image }}"
+    restart_policy: always
+    state: started
+    volumes:
+      "{{ jira_container_settings.volumes }}"
+    ports:
+      "{{ jira_container_settings.ports }}"
+    env:
+      "{{ jira_container_settings.env }}"
+    etc_hosts:
+      "{{ jira_container_settings.hosts | default (omit) }}"
+    networks:
+      - name: "{{ jira_container_settings.networks }}"

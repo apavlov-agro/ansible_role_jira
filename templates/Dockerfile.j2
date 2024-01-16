@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM atlassian/jira-software:8.20.29-jdk11
+FROM atlassian/jira-software:{{ jira_version }}
 COPY atlassian-agent.jar /opt/atlassian/jira/atlassian-agent.jar
 RUN /bin/bash -c 'echo export CATALINA_OPTS=\"-javaagent:/opt/atlassian/jira/atlassian-agent.jar \${CATALINA_OPTS}\"' >> /opt/atlassian/jira/bin/setenv.sh
 CMD ["/entrypoint.py"]

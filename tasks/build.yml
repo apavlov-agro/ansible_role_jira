@@ -15,3 +15,4 @@
     name: "{{ jira_image_name }}"
     tag: "{{ jira_image_tag }}"
     source: build
+    force_source: true
